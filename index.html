@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+    <title>EZ Hold 'em</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  </head>
+  <body>
+    
+    <div id="game_container" class="game_container">
+      <div id="table" class="table">   
+        <h1>EZ Hold 'em</h1>
+        <div id="community_cards_container" class="community_cards_container">
+          <span class="card animated rollIn"></span>
+          <span class="card animated rollIn"></span>
+          <span class="card animated rollIn"></span>
+          <span class="card animated rollIn"></span>
+          <span class="card animated rollIn"></span>
+        </div>
+      </div>
+
+      <div id="player_1" class="player player_1">
+        <div class="player_inner_wrapper">
+            <p>One</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <div id="player_2" class="player player_2">
+        <div class="player_inner_wrapper">
+            <p>Two</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <div id="player_3" class="player player_3">
+        <div class="player_inner_wrapper">
+            <p>Three</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <div id="player_4" class="player player_4">
+        <div class="player_inner_wrapper">
+            <p>Four</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <div id="player_5" class="player player_5">
+        <div class="player_inner_wrapper">
+            <p>Five</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <div id="player_6" class="player player_6">
+        <div class="player_inner_wrapper">
+            <p>Six</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <div id="player_7" class="player player_7">
+        <div class="player_inner_wrapper">
+            <p>Seven</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <div id="player_8" class="player player_8">
+        <div class="player_inner_wrapper">
+            <p>Eight</p>
+            <span class="hole_cards_container">
+              <span class="card animated rollIn"></span>
+              <span class="card animated rollIn"></span>
+            </span>
+        </div>
+        <span class="player_btn animated zoomInDown"></span>
+      </div>
+
+      <form id="player_control" class="player_control">
+        <input type="button" id="deal_button" class="deal_button player_control_button" value="Start">
+        <input type="button" id="turn_button" class="turn_button player_control_button" value="Turn">
+      </form>
+    </div>
+
+    <script src="js/helpers/evaluator.js"></script>
+    <script src="js/models/Card.js"></script>
+    <script src="js/models/Deck.js"></script>
+    <script src="js/views/views.js"></script>
+    <script src="js/models/Dealer.js"></script>
+    <script src="js/models/Chip.js"></script>
+    <script src="js/models/Player.js"></script>
+    <script src="js/models/Table.js"></script>
+    <script src="js/models/Game.js"></script>
+    <!-- <script src="js/views/Markup.js"></script>
+    <script src="js/views/Viewer.js"></script> -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
