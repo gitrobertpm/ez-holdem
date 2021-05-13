@@ -1,20 +1,21 @@
+
 .player {
   position: absolute;
   font-family: 'Righteous', cursive;
   color: rgba(245, 245, 245, 0.9);
   text-shadow: 1px 1px 2px rgba(50, 50, 50, 0.9);
-  width: 75px;
-  height: 125px;
+  width: 93px;
+  height: 100px;
   margin: auto;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(50, 50, 50, 0.5);
   box-shadow: (1px 1px 2px rgba(255, 255, 255, 0.5) inset, -1px -1px 2px rgba(255, 255, 255, 0.5) inset);
-  border-radius: 3px;
+  border-radius: 4px 4px 0 0;
   transition: all 0.4s ease-out 0.1s;
 
   @include tablet {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
   }
 }
 
@@ -22,7 +23,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 2px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -31,6 +32,10 @@
   border-top-width: 5px;
   border-bottom-width: 5px;
   border-radius: 3px;
+
+  @include tablet {
+    padding: 10px;
+  }
 }
 
 .player_btn {
@@ -49,8 +54,7 @@
 .hole_cards_container {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
-  
+  align-items: flex-end;  
 }
 
 .hole_cards_containers .card {
@@ -62,150 +66,194 @@
 }
 
 .player p {
-  margin: 10px auto;
+  margin: 2px auto;
+
+  @include tablet {
+    margin: 10px auto;
+  }
 }
 
 .player_1 {
   bottom: 0px;
-  width: 100%;
-  height: 225px;
+  width: 300px;
+  height: 125px;
+  margin: auto;
+  left: 50%;
+  margin-left: -150px;
+
+  @include mobileBreakOne {
+    bottom: 65px;
+  }
+
+  @include mobileBreakTwo {
+    bottom: 0px;
+  }
 
   @include tablet {
-    bottom: 140px;
+    bottom: 55px;
     width: 200px;
-    left: 50%;
+    height: 200px;
     margin-left: -100px;
+  }
+
+  @include desktop {
+    bottom: 100px;
   }
 }
 
 .player_2 {
-  left: 0;
-  top: 130px;
+  left: 5px;
+  top: 300px;
+
+  @include mobileBreakOne {
+    top: 225px;
+  }
 
   @include mobileBreakTwo {
-    top: 0;
-    left: 50%;
-    margin-left: -278px;
+    top: 115px;
   }
 
   @include tablet {
     top: auto;
-    bottom: 170px;
-    margin-left: -450px;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -345px;
     transform: scale(0.98);
+  }
+
+  @include desktop {
+    bottom: 145px;
+    margin-left: -400px;
   }
 }
 
 .player_3 {
-  left: 0;
-  top: 0;
+  left: 5px;
+  top: 180px;
+
+  @include mobileBreakOne {
+    top: 115px;
+  }
 
   @include mobileBreakTwo {
-    left: 50%;
-    margin-left: -198px;
+    top: 5px;
   }
 
   @include tablet {
-    top: 215px;
-    margin-left: -575px;
+    top: 260px;
+    left: 5px;
     transform: scale(0.96);
   }
 }
 
 .player_4 {
-  top: 0;
-  left: 80px;
+  top: 5px;
+  left: 5px;
 
-  @include mobileBreakOne {
-    left: 50%;
-    margin-left: -118px;
+  @include mobileBreakTwo {
+    left: 110px;
   }
 
   @include tablet {
-    top: 115px;
-    margin-left: -340px;
+    top: 80px;
+    left: 50%;
+    margin-left: -300px;
     transform: scale(0.94);
+  }
+
+  @include desktop {
+    top: 110px;
+    margin-left: -310px;
   }
 }
 
 .player_5 {
-  top: 130px;
+  top: 5px;
   left: 50%;
-  margin-left: -37.5px;
-
-  @include mobileBreakOne {
-    top: 0;
-  }
+  margin-left: -46px;
 
   @include tablet {
-    top: 85px;
-    left: 50%;
-    margin-left: -100px;
+    top: 65px;
+    margin-left: -87.5px;
     transform: scale(0.92);
+  }
+
+  @include desktop {
+    top: 90px;
   }
 }
 
 .player_6 {
-  top: 0;
-  right: 80px;
+  top: 5px;
+  right: 5px;
 
-  @include mobileBreakOne {
-    right: 50%;
-    margin-right: -118px;
+  @include mobileBreakTwo {
+    right: 110px;
   }
 
   @include tablet {
-    top: 115px;
-    margin-right: -340px;
+    top: 80px;
+    right: 50%;
+    margin-right: -300px;
     transform: scale(0.94);
+  }
+
+  @include desktop {
+    top: 110px;
+    margin-right: -310px;
   }
 }
 
 .player_7 {
-  right: 0;
-  top: 0;
+  right: 5px;
+  top: 180px;
+
+  @include mobileBreakOne {
+    top: 115px;
+  }
 
   @include mobileBreakTwo {
-    right: 50%;
-    margin-right: -198px;
+    top: 5px;
   }
 
   @include tablet {
-    top: 215px;
-    margin-right: -575px;
+    top: 260px;
+    right: 5px;
     transform: scale(0.96);
   }
 }
 
 .player_8 {
-  right: 0;
-  top: 130px;
+  right: 5px;
+  top: 300px;
+
+  @include mobileBreakOne {
+    top: 225px;
+  }
 
   @include mobileBreakTwo {
-    top: 0;
-    right: 50%;
-    margin-right: -278px;
+    top: 115px;
   }
 
   @include tablet {
     top: auto;
-    bottom: 170px;
-    margin-right: -450px;
+    right: 50%;
+    bottom: 100px;
+    margin-right: -345px;
     transform: scale(0.98);
+  }
+
+  @include desktop {
+    bottom: 145px;
+    margin-right: -400px;
   }
 }
 
 .actions_on {
   background: rgba(0, 0, 0, 0.7);
-  // border-top-color: rgba(194, 6, 6, 0.9);
-  // border-right-color: rgba(50, 6, 194, 0.9);
-  // border-color: rgba(183, 2, 255, 0.9);
-  // border-left-color: rgba(240, 110, 4, 0.9);
-  // box-shadow: (2px 2px 5px rgba(178, 3, 247, 0.9) inset, -2px -2px 5px rgba(178, 3, 247, 0.9) inset);
 }
 
 .actions_on .player_inner_wrapper {
-  // border-bottom-color: rgba(243, 239, 6, 0.9);
   animation: fade 2.5s ease-in-out infinite alternate;
 }
 
