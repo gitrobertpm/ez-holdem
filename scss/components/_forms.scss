@@ -3,13 +3,13 @@
   margin-top: 5px;
   z-index: 999;
 
-  @include mobileBreakOne {
-    margin-top: -55px;
+  @include mobileBreak525 {
+    // margin-top: -55px;
   }
 
-  @include mobileBreakTwo {
-    margin-top: 0px;
-  }
+  // @include mobileBreakTwo {
+    // margin-top: 0px;
+  // }
 
   @include tablet {
     margin-top: -45px;

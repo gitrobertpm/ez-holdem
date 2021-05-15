@@ -63,8 +63,8 @@ function updateHoleCardsView(players) {
     } else {
       val.children[0].style.display = '';
       val.children[1].style.display = '';
-      val.children[0].innerHTML = `${players[indy].hole_cards[0].num} ${players[indy].hole_cards[0].suit_code}`;
-      val.children[1].innerHTML = `${players[indy].hole_cards[1].num} ${players[indy].hole_cards[1].suit_code}`;
+      val.children[0].innerHTML = `<span class="card-num">${players[indy].hole_cards[0].num}</span> <span class="card-suit">${players[indy].hole_cards[0].suit_code}</span>`;
+      val.children[1].innerHTML = `<span class="card-num">${players[indy].hole_cards[1].num}</span> <span class="card-suit">${players[indy].hole_cards[1].suit_code}</span>`;
       (players[indy].hole_cards[0].color === 'black') ? val.children[0].style.color = 'black' : val.children[0].style.color = 'red';  
       (players[indy].hole_cards[1].color === 'black') ? val.children[1].style.color = 'black': val.children[1].style.color = 'red';
     }  
@@ -78,7 +78,7 @@ function updateCommCardsView(table) {
   [...comm_cards_cont_view.children].forEach((val, indy) => {
     if (indy < table.community_cards.length) {
       val.style.display = '';
-      val.innerHTML = `${table.community_cards[indy].num} ${table.community_cards[indy].suit_code}`;
+      val.innerHTML = `<span class="card-num">${table.community_cards[indy].num}</span> <span class="card-suit">${table.community_cards[indy].suit_code}</span>`;
       (table.community_cards[indy].color === 'black') ? val.style.color = 'black' : val.style.color = 'red'; 
     } else {
       val.style.display = 'none';

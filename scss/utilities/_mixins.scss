@@ -12,14 +12,14 @@
 	color: $color;
 }
 
-@mixin mobileBreakOne {
-  @media #{$mobileBreakOne} {
+@mixin mobileBreak525 {
+  @media #{$mobileBreak525} {
     @content;
   }
 }
 
-@mixin mobileBreakTwo {
-  @media #{$mobileBreakTwo} {
+@mixin mobileBreak725 {
+  @media #{$mobileBreak725} {
     @content;
   }
 }

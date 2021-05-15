@@ -53,12 +53,20 @@
 
 .hole_cards_container {
   display: flex;
+  flex-flow: row;
   justify-content: flex-start;
-  align-items: flex-end;  
+  align-items: flex-end;
 }
 
-.hole_cards_containers .card {
+.hole_cards_container .card {
   align-self: flex-start;
+  display: flex;
+  flex-flow: column;
+
+  @include tablet {
+    flex-flow: row;
+    justify-content: space-around;
+  }
 }
 
 .player_inner_wrapper > * {
@@ -74,26 +82,22 @@
 }
 
 .player_1 {
-  bottom: 0px;
+  bottom: 5px;
   width: 300px;
   height: 125px;
   margin: auto;
   left: 50%;
   margin-left: -150px;
 
-  @include mobileBreakOne {
-    bottom: 65px;
-  }
-
-  @include mobileBreakTwo {
-    bottom: 0px;
-  }
+  // @include mobileBreakTwo {
+  //   bottom: 0px;
+  // }
 
   @include tablet {
     bottom: 55px;
-    width: 200px;
+    width: 250px;
     height: 200px;
-    margin-left: -100px;
+    margin-left: -125px;
   }
 
   @include desktop {
@@ -103,60 +107,60 @@
 
 .player_2 {
   left: 5px;
-  top: 300px;
+  top: 225px;
 
-  @include mobileBreakOne {
-    top: 225px;
+  @include mobileBreak525 {
+    top: 115px;
   }
 
-  @include mobileBreakTwo {
-    top: 115px;
+  @include mobileBreak725 {
+    top: 5px;
+    left: 50%;
+    margin-left: -355px;
   }
 
   @include tablet {
     top: auto;
     bottom: 100px;
-    left: 50%;
     margin-left: -345px;
     transform: scale(0.98);
   }
 
   @include desktop {
     bottom: 145px;
-    margin-left: -400px;
+    margin-left: -420px;
   }
 }
 
 .player_3 {
   left: 5px;
-  top: 180px;
+  top: 115px;
 
-  @include mobileBreakOne {
-    top: 115px;
-  }
-
-  @include mobileBreakTwo {
+  @include mobileBreak525 {
     top: 5px;
+    left: 50%;
+    margin-left: -253px;
   }
 
   @include tablet {
     top: 260px;
     left: 5px;
+    margin-left: auto;
     transform: scale(0.96);
+  }
+
+  @include desktop {
+    top: 200px;
   }
 }
 
 .player_4 {
   top: 5px;
-  left: 5px;
-
-  @include mobileBreakTwo {
-    left: 110px;
-  }
+  left: 50%;
+  margin-left: -150px;
 
   @include tablet {
     top: 80px;
-    left: 50%;
     margin-left: -300px;
     transform: scale(0.94);
   }
@@ -170,7 +174,7 @@
 .player_5 {
   top: 5px;
   left: 50%;
-  margin-left: -46px;
+  margin-left: -47px;
 
   @include tablet {
     top: 65px;
@@ -185,15 +189,11 @@
 
 .player_6 {
   top: 5px;
-  right: 5px;
-
-  @include mobileBreakTwo {
-    right: 110px;
-  }
+  right: 50%;
+  margin-right: -150px;
 
   @include tablet {
     top: 80px;
-    right: 50%;
     margin-right: -300px;
     transform: scale(0.94);
   }
@@ -206,38 +206,42 @@
 
 .player_7 {
   right: 5px;
-  top: 180px;
+  top: 115px;
 
-  @include mobileBreakOne {
-    top: 115px;
-  }
-
-  @include mobileBreakTwo {
+  @include mobileBreak525 {
     top: 5px;
+    right: 50%;
+    margin-right: -253px;
   }
 
   @include tablet {
     top: 260px;
     right: 5px;
+    margin-right: auto;
     transform: scale(0.96);
+  }
+
+  @include desktop {
+    top: 200px;
   }
 }
 
 .player_8 {
   right: 5px;
-  top: 300px;
+  top: 225px;
 
-  @include mobileBreakOne {
-    top: 225px;
+  @include mobileBreak525 {
+    top: 115px;
   }
 
-  @include mobileBreakTwo {
-    top: 115px;
+  @include mobileBreak725 {
+    top: 5px;
+    right: 50%;
+    margin-right: -355px;
   }
 
   @include tablet {
     top: auto;
-    right: 50%;
     bottom: 100px;
     margin-right: -345px;
     transform: scale(0.98);
@@ -245,7 +249,7 @@
 
   @include desktop {
     bottom: 145px;
-    margin-right: -400px;
+    margin-right: -420px;
   }
 }
 

@@ -466,15 +466,6 @@ ul {
 
 h1 {
   font-family: "Righteous", cursive;
-  font-size: 7em;
-  color: rgba(250, 250, 250, 0.1);
-  text-shadow: 2px 2px 2px rgba(25, 25, 25, 0.3);
-  margin: 30% auto;
-}
-@media (min-width: 768px) {
-  h1 {
-    color: rgba(250, 250, 250, 0.5);
-  }
 }
 
 p {
@@ -487,7 +478,6 @@ p {
   width: 100%;
   max-width: 1050px;
   margin: auto;
-  padding: 10px;
   perspective: 1000px;
   z-index: -999;
   overflow: hidden;
@@ -495,36 +485,52 @@ p {
 @media (min-width: 768px) {
   .game_container {
     margin-top: -50px;
+    padding: 10px;
   }
 }
 
 .table {
   position: relative;
-  perspective: 1000px;
-  width: 95%;
+  width: 100%;
+  min-height: 550px;
   margin: auto;
-  margin: -50px auto auto;
+  margin: auto;
   padding: 35px;
-  border-radius: 55%;
-  border: 5px solid rgba(55, 30, 15, 0.9);
   transition: all 0.4s ease-out 0.1s;
-  transform: rotateX(50deg);
+}
+@media (min-width: 525px) {
+  .table {
+    min-height: 435px;
+  }
 }
 @media (min-width: 768px) {
   .table {
+    perspective: 1000px;
     width: 90%;
     min-height: 750px;
+    margin-top: -50px;
+    border-radius: 55%;
     border: 15px solid rgba(55, 30, 15, 0.9);
     transform: rotateX(65deg);
   }
 }
 
 .table h1 {
-  margin-left: -15px;
+  font-size: 3em;
+  color: rgba(250, 250, 250, 0.1);
+  text-shadow: 2px 2px 2px rgba(25, 25, 25, 0.3);
+  margin: 160px auto auto;
+}
+@media (min-width: 525px) {
+  .table h1 {
+    font-size: 5em;
+    margin-top: 85px;
+  }
 }
 @media (min-width: 768px) {
   .table h1 {
-    margin-top: 42%;
+    font-size: 6em;
+    margin-top: 300px;
     margin-left: auto;
   }
 }
@@ -533,15 +539,15 @@ p {
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 100px;
+  top: 390px;
   left: 50%;
   margin-top: -57px;
   margin-left: -250px;
   width: 500px;
 }
-@media (min-width: 450px) {
+@media (min-width: 525px) {
   .community_cards_container {
-    top: 70%;
+    top: 270px;
   }
 }
 @media (min-width: 768px) {
@@ -551,19 +557,16 @@ p {
 }
 
 .community_cards_container .card {
+  display: flex;
+  flex-flow: column;
   font-size: 1.5em;
   width: 50px;
   height: 75px;
 }
-@media (min-width: 600px) {
-  .community_cards_container .card {
-    font-size: 2em;
-    width: 65px;
-    height: 100px;
-  }
-}
 @media (min-width: 768px) {
   .community_cards_container .card {
+    flex-flow: row;
+    justify-content: space-around;
     font-size: 2.5em;
     width: 80px;
     height: 125px;
@@ -626,12 +629,21 @@ p {
 
 .hole_cards_container {
   display: flex;
+  flex-flow: row;
   justify-content: flex-start;
   align-items: flex-end;
 }
 
-.hole_cards_containers .card {
+.hole_cards_container .card {
   align-self: flex-start;
+  display: flex;
+  flex-flow: column;
+}
+@media (min-width: 768px) {
+  .hole_cards_container .card {
+    flex-flow: row;
+    justify-content: space-around;
+  }
 }
 
 .player_inner_wrapper > * {
@@ -648,29 +660,19 @@ p {
 }
 
 .player_1 {
-  bottom: 0px;
+  bottom: 5px;
   width: 300px;
   height: 125px;
   margin: auto;
   left: 50%;
   margin-left: -150px;
 }
-@media (min-width: 450px) {
-  .player_1 {
-    bottom: 65px;
-  }
-}
-@media (min-width: 600px) {
-  .player_1 {
-    bottom: 0px;
-  }
-}
 @media (min-width: 768px) {
   .player_1 {
     bottom: 55px;
-    width: 200px;
+    width: 250px;
     height: 200px;
-    margin-left: -100px;
+    margin-left: -125px;
   }
 }
 @media (min-width: 1024px) {
@@ -681,23 +683,24 @@ p {
 
 .player_2 {
   left: 5px;
-  top: 300px;
+  top: 225px;
 }
-@media (min-width: 450px) {
-  .player_2 {
-    top: 225px;
-  }
-}
-@media (min-width: 600px) {
+@media (min-width: 525px) {
   .player_2 {
     top: 115px;
+  }
+}
+@media (min-width: 725px) {
+  .player_2 {
+    top: 5px;
+    left: 50%;
+    margin-left: -355px;
   }
 }
 @media (min-width: 768px) {
   .player_2 {
     top: auto;
     bottom: 100px;
-    left: 50%;
     margin-left: -345px;
     transform: scale(0.98);
   }
@@ -705,45 +708,43 @@ p {
 @media (min-width: 1024px) {
   .player_2 {
     bottom: 145px;
-    margin-left: -400px;
+    margin-left: -420px;
   }
 }
 
 .player_3 {
   left: 5px;
-  top: 180px;
+  top: 115px;
 }
-@media (min-width: 450px) {
-  .player_3 {
-    top: 115px;
-  }
-}
-@media (min-width: 600px) {
+@media (min-width: 525px) {
   .player_3 {
     top: 5px;
+    left: 50%;
+    margin-left: -253px;
   }
 }
 @media (min-width: 768px) {
   .player_3 {
     top: 260px;
     left: 5px;
+    margin-left: auto;
     transform: scale(0.96);
+  }
+}
+@media (min-width: 1024px) {
+  .player_3 {
+    top: 200px;
   }
 }
 
 .player_4 {
   top: 5px;
-  left: 5px;
-}
-@media (min-width: 600px) {
-  .player_4 {
-    left: 110px;
-  }
+  left: 50%;
+  margin-left: -150px;
 }
 @media (min-width: 768px) {
   .player_4 {
     top: 80px;
-    left: 50%;
     margin-left: -300px;
     transform: scale(0.94);
   }
@@ -758,7 +759,7 @@ p {
 .player_5 {
   top: 5px;
   left: 50%;
-  margin-left: -46px;
+  margin-left: -47px;
 }
 @media (min-width: 768px) {
   .player_5 {
@@ -775,17 +776,12 @@ p {
 
 .player_6 {
   top: 5px;
-  right: 5px;
-}
-@media (min-width: 600px) {
-  .player_6 {
-    right: 110px;
-  }
+  right: 50%;
+  margin-right: -150px;
 }
 @media (min-width: 768px) {
   .player_6 {
     top: 80px;
-    right: 50%;
     margin-right: -300px;
     transform: scale(0.94);
   }
@@ -799,44 +795,48 @@ p {
 
 .player_7 {
   right: 5px;
-  top: 180px;
+  top: 115px;
 }
-@media (min-width: 450px) {
-  .player_7 {
-    top: 115px;
-  }
-}
-@media (min-width: 600px) {
+@media (min-width: 525px) {
   .player_7 {
     top: 5px;
+    right: 50%;
+    margin-right: -253px;
   }
 }
 @media (min-width: 768px) {
   .player_7 {
     top: 260px;
     right: 5px;
+    margin-right: auto;
     transform: scale(0.96);
+  }
+}
+@media (min-width: 1024px) {
+  .player_7 {
+    top: 200px;
   }
 }
 
 .player_8 {
   right: 5px;
-  top: 300px;
+  top: 225px;
 }
-@media (min-width: 450px) {
-  .player_8 {
-    top: 225px;
-  }
-}
-@media (min-width: 600px) {
+@media (min-width: 525px) {
   .player_8 {
     top: 115px;
+  }
+}
+@media (min-width: 725px) {
+  .player_8 {
+    top: 5px;
+    right: 50%;
+    margin-right: -355px;
   }
 }
 @media (min-width: 768px) {
   .player_8 {
     top: auto;
-    right: 50%;
     bottom: 100px;
     margin-right: -345px;
     transform: scale(0.98);
@@ -845,7 +845,7 @@ p {
 @media (min-width: 1024px) {
   .player_8 {
     bottom: 145px;
-    margin-right: -400px;
+    margin-right: -420px;
   }
 }
 
@@ -887,6 +887,7 @@ p {
 @media (min-width: 768px) {
   .card {
     margin: 5px;
+    padding: 5px;
   }
 }
 
@@ -903,16 +904,6 @@ p {
 .player_control {
   margin-top: 5px;
   z-index: 999;
-}
-@media (min-width: 450px) {
-  .player_control {
-    margin-top: -55px;
-  }
-}
-@media (min-width: 600px) {
-  .player_control {
-    margin-top: 0px;
-  }
 }
 @media (min-width: 768px) {
   .player_control {
