@@ -1,18 +1,17 @@
 /**
  * EZ Hold 'em - Card Class
- * Developed by: Robert Manolis
- *               Milwaukie, OR - 2019
  */
 
 "use strict";
 
+/**
+  *Creates an instance of Card
+  * @param {number or string} num
+  * @param {string} suit
+  * @memberof Card
+ **/
+
 class Card {
-  /**
-   *Creates an instance of Card.
-   * @param {*} num
-   * @param {*} suit
-   * @memberof Card
-   */
   constructor(num, suit) {
     this.num = num;
     this.suit = suit;
@@ -38,4 +37,4 @@ class Card {
     }
     this.val = (typeof this.num === 'number') ? this.num : face_card_vals[this.num];
   }
-}
+};

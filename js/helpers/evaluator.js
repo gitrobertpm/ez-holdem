@@ -1,280 +1,319 @@
 /**
- * EZ Hold 'em - PHand Evaluator
- * Developed by: Robert Manolis
- *               Milwaukie, OR - 2019
+ * EZ Hold 'em - Hand Evaluator
  */
 
 "use strict";
 
 
-const winningHands = [
-  'royalFlush',
-  'straight flush',
-  'four of a kind',
-  'full house',
-  'flush',
-  'straight',
-  'three of a kind',
-  'two pair',
-  'pair'
-]
+/* Return sorted hand */
+const getSortedHand = hand => hand.sort((a, b) => b.val - a.val);
 
 
-function getHighCard(hand) {
-  const vals = hand.map((card, i) => card.val);
-  const maxVal = Math.max(...vals);
-  const maxIndy = vals.indexOf(maxVal);
-  //console.log('High card', hand[maxIndy]);
-  return hand[maxIndy];
-}
+/* Check if hand contains straight */
+const straightCheck = hand => {
 
-function getAllHighCards(hand) {
-  const handOfHighCards = [];
-  const storage = [];
-  hand.forEach(card => storage.push(card));
-  while (storage.length > 0 && handOfHighCards.length < 5) {
-    const highCard = getHighCard(storage);
-    const vals = storage.map((card, i) => card.val);
-    const maxVal = Math.max(...vals);
-    const maxIndy = vals.indexOf(maxVal);
-    handOfHighCards.push(highCard);
-    storage.splice(maxIndy, 1);
-  }
-  //console.log('hand of high cards, handOfHighCards);
+  let isStraight = false;
+  let newHand = hand;
+  let handName = 'none';
 
-  return handOfHighCards;
-}
+  const possibleStraights = [
+    [10, 11, 12, 13, 14],
+    [9, 10, 11, 12, 13],
+    [8, 9, 10, 11, 12],
+    [7, 8, 9, 10, 11],
+    [6, 7, 8, 9, 10],
+    [5, 6, 7, 8, 9],
+    [4, 5, 6, 7, 8],
+    [3, 4, 5, 6, 7],
+    [2, 3, 4, 5, 6],
+    [14, 2, 3, 4, 5],
+    [14, 5, 4, 3, 2],
+    [5, 4, 3, 2, 1]
+  ];
 
-function getTopPair(hand) {
-  const compare = (a,b) => (a.val > b.val) ? -1 : (a.val < b.val) ? 1 : 0;
-  const sortedHand = hand.sort(compare);
-  const topPair = [];
-  const storage = [];
-  sortedHand.forEach(card => storage.push(card));
-  
-  // loop over reversed hand to starting with high card to see if there is a match
-  while (storage.length > 1 && topPair.length < 2) {
-    const cardToCheck = storage.splice(0, 1);
-    storage.forEach(card => (card.val === cardToCheck[0].val) ? topPair.push(card, cardToCheck[0]) : false );
-  }
+  const uniques = Array.from(new Set(hand.map(card => card.val))); //console.log(uniques);
 
-  return topPair;
-}
+  if (uniques.length > 4) {
 
-
-function getTwoPair(hand) {
-  // variables for indexesOfPair, and storage
-  // push hand to storage
-  // check storage for getPair
-  // if pair - capture indexes and remove from storage and check for pair
-  // if second pair capture indexes and remove from storage and get high card of storage and store index and return hand indexes from index
-  // else return false
-}
-
-
-function getSet (hand) {
-  // variable to reverse sort hand
-  // loop over hand, highest to lowest
-  // check if two other cards match
-  // if so return set plus next two highest
-}
-
-// write up whole process
-
-
-// when a card is dealt, or when player turn starts, player uses functions from the evaluator file to evaluate best hand
-// ideally, one function will return the bast hand up to five cards from the hand passed into the evaluator functions, and player class will set it as best_hand
-// maybe when best_hand is returned, maybe it is an object that includes the high-card-evaluator-of-combo/kicker, which is also set by player
-// to determine best hand, we check for desired combinations, highest to lowest, conditional upon the length of the hand
-
-// to get best hand we create functions for testing for each combo - if combo exists return hand else return false
-// create bestHand function that sticks all combo testers into array
-// loop over bestHandTesters array, from highest to lowest, return first one that is not false
-// use array of combo names, and index of highest combo to get best hand name
-// if none are true, get five highest cards and return those;
-
-// if hand length is 2 cards, check for pair, else high card
-// if hand length is 5 or more, check for Royal flush, straight flush, four of a kind, full house, flush, straight, three of a kind, two pair, pair, high card
-// if two players have same hand, check which is greater - might be handled in dealer, but function might be here
-// if desired combo located, evaluator returns it and player class sets it to best hand property - maybe an object including best hand and kicker
-
-
-// to compare hands across players, we assign a value to each desired combo and see which player hand has the highest combo value
-// if two or more players' hands have the same combo value, further evaluation is required to determine which is better, like high card/kicker
-
-
-
-
-const possibleStraights = [
-  [10, 11, 12, 13, 14],
-  [9, 10, 11, 12, 13],
-  [8, 9, 10, 11, 12],
-  [7, 8, 9, 10, 11],
-  [6, 7, 8, 9, 10],
-  [5, 6, 7, 8, 9],
-  [4, 5, 6, 7, 8],
-  [3, 4, 5, 6, 7],
-  [2, 3, 4, 5, 6],
-  [14, 2, 3, 4, 5]
-];
-
-function haveStraight(hand) {
-
-  // loop over possibleStraights
-    // on each iteration, filter over possibleStraights sub-array
-      // if hand parameter contains/includes 
-
-  //const handVals = hand.map(card => card.val).sort((a, b) => a - b);
-  const sortedUniqueHandVals = [...new Set(hand.map(card => card.val).sort((a, b) => b - a))];
-  const straightArray = [];
-  const sequence = sortedUniqueHandVals.filter((val, i, vals) => {
-
-    if (val - 1 === vals[i + 1] || val + 1 === vals[i - 1]) {
-      if (straightArray.length === 0) {
-        straightArray.unshift(val);
-        
-      } else if (val + 1 === straightArray[0]) {
-        straightArray.unshift(val);
+    if (uniques.includes(14) && uniques.includes(5) && uniques.includes(4) && uniques.includes(3) && uniques.includes(2)) {
+      const first = uniques.shift();
+      uniques.push(first);
+    }
+    const handStr = uniques.join(''); //console.log(handStr);
+    for (let i = 0, j = possibleStraights.length; i < j; i++) { //console.log(possibleStraights[i].join(''));
+      if (handStr.includes(possibleStraights[i].reverse().join('')) || handStr.includes(possibleStraights[i].join(''))) { 
+        isStraight = true;
+        handName = 'Straight';
+        if (hand.length === 5) {
+          newHand = hand;
+        } else {
+          newHand = hand.filter(card => possibleStraights[i].includes(card.val));
+        }
+        if (newHand[0].num === 'A' && newHand[1].num === 5) {
+          const first = newHand.shift();
+          newHand.push(first);
+        }
+        break;
       }
     }
-  });
-  
-
-  let straight = false;
- 
-  return straight;
-}
+  }
+  // console.log(isStraight, newHand, handName);
+  return [isStraight, newHand, handName];
+};
 
 
-function getKicker() {
+/* Check if hand contains flush, straight flush or royal flush */
+const flushCheck = hand => {
 
-}
+  let isFlush = false;
+  let newHand = hand;
+  let handName = 'none';
 
+  const suitNames = ['spades', 'hearts', 'clubs', 'diamonds'];
+  const fx = suit => hand.filter(card => card.suit === suit);
+  const suits = {};
+  suitNames.forEach(suit => suits[suit] = fx(suit)); //console.log(suits);
+  const flush = Object.values(suits).filter(arr => arr.length > 4)[0];
 
-
-
-
-
-function havePairTwoPairSetFullHouseFourOfAKind() {
-
-}
-
-
-// function haveStraight(hand) {
-
-//   // console.log(hand)
-
-//   // function compare(a,b) {
-//   //   if (a.val < b.val)
-//   //      return -1;
-//   //   if (a.val > b.val)
-//   //     return 1;
-//   //   return 0;
-//   // }
-
-//   //const sortedHand = hand.sort(compare);
-//   // see if hand contains five sequential values
-//   // put sorted values in array and remove duplicates
-//   //const handVals = sortedHand.map(card => card.val);
-//   //const uniqueHandVals = [...new Set(handVals)];
-
-//   //const handVals = hand.map(card => card.val).sort((a, b) => a - b);
-//   const sortedUniqueHandVals = [...new Set(hand.map(card => card.val).sort((a, b) => b - a))];
-//   const straightArray = [];
-//   const sequence = sortedUniqueHandVals.filter((val, i, vals) => {
-
-//     if (val - 1 === vals[i + 1] || val + 1 === vals[i - 1]) {
-//       if (straightArray.length === 0) {
-//         straightArray.unshift(val);
-        
-//       } else if (val + 1 === straightArray[0]) {
-//         straightArray.unshift(val);
-//       }
-//     }
-//   });
-//   //const secondSequence = firstSequence.filter((val, i, vals) => val + 1 === vals[i + 1] || val - 1 === vals[i - 1]);
-
-
-//   //console.log(sortedHand);
-//   //console.log(handVals);
-//   console.log(sortedUniqueHandVals);
-//   //console.log(sequence);
-//   console.log('straightArray', straightArray);
-//   //console.log(secondSequence);
-  
-
-//   let straight = false;
-//   // for (let i = 0, j = sortedHand.length; i < j; i++) {
-//   //   console.log(sortedHand[i], sortedHand[i].val, sortedHand[i + 1].val + 1);
-//   //   if (sortedHand[i].val === sortedHand[i + 1].val - 1 && 
-//   //       sortedHand[i].val === sortedHand[i + 2].val - 2 &&
-//   //       sortedHand[i].val === sortedHand[i + 3].val - 3 &&
-//   //       sortedHand[i].val === sortedHand[i + 4].val - 4) {
-//   //         straight = true;
-//   //   }
-//   // }
-  
-  
-//   hand.forEach((card, i, hand) => {
-//     // if hand contains card
-//     // if (hand.includes()) {
-
-//     // }
-//   });
-//   return straight;
-// }
-
-function haveFlush(hand) {
-  const spades = hand.filter(card => card.suit === 'spades');
-  const hearts = hand.filter(card => card.suit === 'hearts');
-  const clubs = hand.filter(card => card.suit === 'clubs');
-  const diamonds = hand.filter(card => card.suit === 'diamonds');
-  const suits = [spades, hearts, clubs, diamonds];
-  let flush = false;
-
-  suits.forEach(suit => {
-    if (suit.length > 4) {
-      flush = true;
+  if (flush) {
+    isFlush = true;
+    newHand = flush.slice(0, 5);
+    handName = 'Flush';
+    // Check for straight
+    const hasStraight = straightCheck(newHand); //console.log(hasStraight);
+    if (hasStraight[0]) {
+      handName = 'Straight Flush';
+        // Check for royal
+      const nums = hasStraight[1].map(card => card.num);
+      if (nums.includes('A') && nums.includes('K')) {
+        handName = 'Royal Flush';
+      }
     }
-  });
+  }
 
-  return flush;
-}
-
-
-function haveStraightFlush() {
-
-}
-
-function bestHand(hand) {
-
-}
+  return [isFlush, newHand, handName];
+};
 
 
+/* Return array of duplicate cards */
+const getNums = (hand, count) => {
+  const nums = {};
+  hand.forEach(card => {
+    if (!nums[card.val]) {
+      nums[card.val] = [card];
+    } else {
+      nums[card.val].push(card);
+    }
+  }); // console.log(nums);
 
-// winning hands
-
-// points for each card
-
-// determining highest high card, pair, set, etc.
-
-// place a number value on each hand
-
-// look for winning combos
+  return Object.values(nums).filter(arr => arr.length >= count).sort((a, b) => b[0].val - a[0].val)[0]; 
+};
 
 
+/* Check if hand contains four of a kind */
+const fourCheck = hand => {
+  let isFours = false;
+  let newHand = hand;
+  let handName = 'none';
 
-console.log('evaluator');
+  const fours = getNums(hand, 4);
 
-// {
-  //   if (a.val > b.val)
-  //       return -1;
-  //   if (a.val < b.val)
-  //     return 1;
-  //   return 0;
-  // }
-    // {
-    //   if (card.val === cardToCheck[0].val) {
-    //     topPair.push(card, cardToCheck[0]);
-    //   }
-    // });
+  if (fours) {
+    isFours = true;
+    const sortedRest = getSortedHand(hand.filter(card => card.num !== fours[0].num)); //console.log(sortedRest);
+    newHand = [...fours.slice(0, 4), sortedRest[0]];
+    handName = 'Four of a Kind';
+  }
+  //console.log(newHand);
+  return [isFours, newHand, handName];
+};
+
+
+/* Check if hand contains pair(s) */
+const pairCheck = hand => {
+  let isPair = false;
+  let newHand = hand;
+  let handName = 'none';
+
+  const pair = getNums(hand, 2); //console.log(pair);
+
+  if (pair) {
+    isPair = true;
+    const sortedRest = getSortedHand(hand.filter(card => card.num !== pair[0].num)); //console.log(sortedRest);
+
+    const secondPair = hand.length > 4 ? getNums(sortedRest, 2) : null;
+
+    if (secondPair) {
+      const nextSortedRest = getSortedHand(sortedRest.filter(card => card.num !== secondPair[0].num)); //console.log(sortedRest);
+      newHand = [...pair.slice(0, 2), ...secondPair.slice(0, 2), nextSortedRest[0]];
+      handName = 'Two Pair';
+    } else {
+      newHand = hand.length < 4 ? pair.slice(0, 2) : hand.length === 4 ? [...pair.slice(0, 2), sortedRest[0], sortedRest[1]] : [...pair.slice(0, 2), sortedRest[0], sortedRest[1], sortedRest[2]];
+      handName = 'One Pair';
+    }
+  }
+  //console.log(isPair, newHand, handName);
+  return [isPair, newHand, handName];
+};
+
+
+/* Check if hand contains set */
+const setCheck = hand => {
+  let isSet = false;
+  let newHand = hand;
+  let handName = 'none';
+
+  const set = getNums(hand, 3); //console.log(set);
+
+  if (set) {
+    isSet = true;
+    const sortedRest = getSortedHand(hand.filter(card => card.num !== set[0].num)); //console.log(sortedRest);
+    const alsoHasPair = pairCheck(sortedRest);
+    if (alsoHasPair[0]) {
+      newHand = [...set.slice(0, 3), ...alsoHasPair[1].slice(0, 2)];
+      handName = 'Full House';
+    } else {
+      newHand = [...set.slice(0, 3), sortedRest[0], sortedRest[1]];
+      handName = 'Three of a Kind';
+    }
+  }
+  //console.log(isSet, newHand, handName);
+  return [isSet, newHand, handName];
+};
+
+
+/* Evaluate hands to find best one and assign to player object */
+const getAndSetBestHand = player => {
+
+  /* Array of winning hand names */
+  const winningHands = [
+    'Royal Flush',
+    'Straight Flush',
+    'Four of a Kind',
+    'Full House',
+    'Flush',
+    'Straight',
+    'Three of a Kind',
+    'Two Pair',
+    'One Pair',
+    'High Card'
+  ];
+
+
+  // get sorted hand - create helper function to return sorted hand
+  const sortedHand = getSortedHand(player.hand); //console.log(sortedHand);
+
+
+  /* Get index of hand name from array of winning hands */
+  const getHandIndy = handName => winningHands.indexOf(handName);
+
+
+  /* Get total value of hand */
+  const getHandVal = hand => {
+    let handVal = hand.reduce((acc, card) => {
+      if (card) {
+        return acc + card.val;
+      }
+    }, 0);
+
+    if (hand.length > 4) {
+      if (hand[0].num === 5 && hand[1].num === 4  && hand[2].num === 3  && hand[3].num === 2  && hand[4].num === 'A' ) {
+        handVal -= 13;
+      }
+    }
+
+    return handVal;
+  }
+
+
+  const setBestHand = (player, cards, name) => {
+    const bestHand = {
+      name: name,
+      cards: cards,
+      index: getHandIndy(name),
+      val: getHandVal(cards)
+    };
+
+    return player.best_hand = bestHand;
+  };
+
+
+  // Check for flush, straight flush and royal flush
+  const hasFlush = flushCheck(sortedHand); //console.log(hasFlush);
+
+  if (hasFlush[0]) {
+    console.log(`Player ${player.id} has ${hasFlush[2]}`);
+    return setBestHand(player, hasFlush[1], hasFlush[2]);
+  }
+
+
+  // Check for straight
+  const hasStraight = straightCheck(sortedHand); //console.log(hasStraight);
+
+  if (hasStraight[0]) { //console.log(hasStraight);
+    console.log(`Player ${player.id} has ${hasStraight[2]}`);
+    return setBestHand(player, hasStraight[1], hasStraight[2]);
+  }
+
+
+  // Check for fours
+  const hasFours = fourCheck(sortedHand); //console.log(hasFours);
+
+  if (hasFours[0]) {
+    console.log(`Player ${player.id} has ${hasFours[2]}`);
+    return setBestHand(player, hasFours[1], hasFours[2]);
+  }
+
+
+  // Check for set and full house
+  const hasSet = setCheck(sortedHand); //console.log(hasSet);
+
+  if (hasSet[0]) {
+    console.log(`Player ${player.id} has ${hasSet[2]}`);
+    return setBestHand(player, hasSet[1], hasSet[2]);
+  }
+
+
+  // Check for pair(s)
+  const hasPair = pairCheck(sortedHand); //console.log(hasPair);
+
+  if (hasPair[0]) {
+    console.log(`Player ${player.id} has ${hasPair[2]}`);
+    return setBestHand(player, hasPair[1], hasPair[2]);
+  }
+
+
+  // High card
+  console.log(`Player ${player.id} has High Card`);
+  return setBestHand(player, sortedHand.slice(0, 5), 'High Card');
+};
+
+
+/* Get winner(s) */
+const getAndSetWinner = game => { //console.log(game);
+
+  let lowestIndex = 42;
+
+  game.players.forEach(player => {
+    if (player.best_hand.index < lowestIndex) {
+      lowestIndex = player.best_hand.index;
+    }
+  }); //console.log(lowestIndex);
+
+  const indexWinner = game.players.filter(player => player.best_hand.index === lowestIndex); //console.log(indexWinner);
+
+  if (indexWinner.length === 1) {
+    return game.hand_winner = indexWinner;
+  } else {
+    let highestVal = 0;
+    game.players.forEach(player => {
+      if (player.best_hand.val > highestVal) {
+        highestVal = player.best_hand.val;
+      }
+    }); //console.log(highestVal);
+
+    const valWinner = game.players.filter(player => player.best_hand.index === lowestIndex); //console.log(valWinner);
+
+    return game.hand_winner = valWinner;
+  }
+};

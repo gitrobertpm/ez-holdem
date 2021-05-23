@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 1050px;
   margin: auto;
-  perspective: 1000px;
+  perspective: 750px;
   z-index: -999;
   overflow: hidden;
 
@@ -28,18 +28,13 @@
     min-height: 435px;
   }
 
-  // @include mobileBreak725 {
-  //   min-height: 430px;
-  // }
-
   @include tablet {
-    perspective: 1000px;
     width: 90%;
     min-height: 750px;
     margin-top: -50px;
     border-radius: 55%;
     border: 15px solid rgba(55, 30, 15, 0.9);
-	  transform: rotateX(65deg);
+	  transform: rotateX(60deg);
   }
 }
 

@@ -55,7 +55,11 @@
   display: flex;
   flex-flow: row;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-self: flex-end;
+
+  @include tablet {
+    height: 60px;
+  } 
 }
 
 .hole_cards_container .card {
@@ -88,10 +92,6 @@
   margin: auto;
   left: 50%;
   margin-left: -150px;
-
-  // @include mobileBreakTwo {
-  //   bottom: 0px;
-  // }
 
   @include tablet {
     bottom: 55px;
@@ -166,7 +166,7 @@
   }
 
   @include desktop {
-    top: 110px;
+    top: 90px;
     margin-left: -310px;
   }
 }
@@ -183,7 +183,7 @@
   }
 
   @include desktop {
-    top: 90px;
+    top: 70px;
   }
 }
 
@@ -199,7 +199,7 @@
   }
 
   @include desktop {
-    top: 110px;
+    top: 90px;
     margin-right: -310px;
   }
 }
