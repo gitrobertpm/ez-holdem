@@ -57,7 +57,7 @@
   justify-content: flex-start;
   align-self: flex-end;
 
-  @include tablet {
+  @include tablet { 
     height: 60px;
   } 
 }
