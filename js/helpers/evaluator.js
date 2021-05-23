@@ -312,7 +312,7 @@ const getAndSetWinner = game => { //console.log(game);
       }
     }); //console.log(highestVal);
 
-    const valWinner = game.players.filter(player => player.best_hand.index === lowestIndex); //console.log(valWinner);
+    const valWinner = game.players.filter(player => player.best_hand.val === highestVal); //console.log(valWinner);
 
     return game.hand_winner = valWinner;
   }
