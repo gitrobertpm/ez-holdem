@@ -49,7 +49,7 @@ const updateOverlays = (game_mode, winner) => { //console.log(game_mode, winner)
       messageEnd += ` - ${winner[0].best_hand.cards[0].num}s full of ${winner[0].best_hand.cards[3].num}s`;
     }
     if (messageEnd === 'four of a kind') {
-      messageEnd += ` - ${winner[0].best_hand.cards[0].num}`;
+      messageEnd += ` four ${winner[0].best_hand.cards[0].num}s`;
     }
     if (messageEnd === 'three of a kind') {
       messageEnd = `a set of ${winner[0].best_hand.cards[0].num}s`;
@@ -58,7 +58,7 @@ const updateOverlays = (game_mode, winner) => { //console.log(game_mode, winner)
       messageEnd += ` - ${winner[0].best_hand.cards[0].num}s and ${winner[0].best_hand.cards[2].num}s`;
     }
     if (messageEnd === 'one pair') {
-      messageEnd += ` - ${winner[0].best_hand.cards[0].num}s`;
+      messageEnd += ` of ${winner[0].best_hand.cards[0].num}s`;
     }
     if (messageEnd === 'high card') {
       messageEnd += ` - ${winner[0].best_hand.cards[0].num}`;

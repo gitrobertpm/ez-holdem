@@ -1025,9 +1025,14 @@ p {
   }
 }
 
+.winner_overlay .card .card-num,
+.winner_overlay .card .card-suit {
+  display: block;
+}
 @media (min-width: 768px) {
   .winner_overlay .card .card-num,
 .winner_overlay .card .card-suit {
+    display: inline-block;
     font-size: 2em;
   }
 }
