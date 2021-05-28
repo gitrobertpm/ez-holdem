@@ -999,10 +999,17 @@ p {
 
 .winner_overlay h1 {
   font-size: 1.5em;
+  max-width: 275px;
 }
 @media (min-width: 768px) {
   .winner_overlay h1 {
-    font-size: 3em;
+    font-size: 2.5em;
+    max-width: 500px;
+  }
+}
+@media (min-width: 1024px) {
+  .winner_overlay h1 {
+    max-width: 1000px;
   }
 }
 
@@ -1018,6 +1025,10 @@ p {
   }
 }
 
+.winner_overlay .card {
+  width: 42px;
+  height: 55px;
+}
 @media (min-width: 768px) {
   .winner_overlay .card {
     width: 75px;
@@ -1027,14 +1038,19 @@ p {
 
 .winner_overlay .card .card-num,
 .winner_overlay .card .card-suit {
+  font-size: 1em;
   display: block;
 }
 @media (min-width: 768px) {
   .winner_overlay .card .card-num,
 .winner_overlay .card .card-suit {
-    display: inline-block;
     font-size: 2em;
+    display: inline-block;
   }
+}
+
+.winner_overlay .next_hand_button {
+  margin: 35px auto;
 }
 
 .overlay .start_button {
