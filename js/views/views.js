@@ -31,11 +31,30 @@ const updateOverlays = (game_mode, winner) => { //console.log(game_mode, winner)
 
   if (game_mode === 'winner') {
     winner_overlay.style.display = 'block';
+    let messageEnd = `${winner[0].best_hand.name.toLowerCase()}!`;
+    let messageMiddle = messageEnd.includes('Kind') || messageEnd.includes('Pair') || messageEnd.includes('High') ? 'won with' : 'won with a';
+    
     if (winner.length === 1) {
-      winner_overlay.querySelector('h1').innerHTML = `Player ${winner[0].id} won with a ${winner[0].best_hand.name}!`;
+      if (winner[0].id === 1) {
+        winner_overlay.querySelector('h1').innerHTML = `You ${messageMiddle} ${messageEnd}`;
+      } else {
+        winner_overlay.querySelector('h1').innerHTML = `Player ${winner[0].id} ${messageMiddle} ${messageEnd}`;
+      }
+      
     } else {
-      const winners = winner.map(player => player.id).join(', ');
-      winner_overlay.querySelector('h1').innerHTML = `Players ${winners} won with a ${winner[0].best_hand.name}!`;
+      const winners = winner.map(player => player.id);
+      let winnerList = '';
+      winners.forEach((w, i, a) => {
+        if (i === 0) {
+          winnerList += `${w}`;
+        } else if (i === a.length - 1) {
+          winnerList += ` and ${w}`;
+        } else {
+          winnerList += `, ${w}`;
+        }
+      });
+
+      winner_overlay.querySelector('h1').innerHTML = `Players ${winners} ${messageMiddle} ${messageEnd}`;
     }
     
     return winner_overlay.style.opacity = '1';

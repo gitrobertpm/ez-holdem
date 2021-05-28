@@ -979,6 +979,7 @@ p {
 
 .winner_overlay {
   display: none;
+  padding: 10px;
   opacity: 0;
   backdrop-filter: blur(2px);
 }
@@ -993,6 +994,15 @@ p {
   .overlay h1 {
     font-size: 6em;
     margin: 100px auto 50px;
+  }
+}
+
+.winner_overlay h1 {
+  font-size: 1.5em;
+}
+@media (min-width: 768px) {
+  .winner_overlay h1 {
+    font-size: 3em;
   }
 }
 

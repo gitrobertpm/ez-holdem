@@ -47,7 +47,7 @@ const straightCheck = hand => {
         if (hand.length === 5) {
           newHand = hand;
         } else {
-          newHand = hand.filter(card => possibleStraights[i].includes(card.val));
+          newHand = Array.from(new Set(hand.filter(card => possibleStraights[i].includes(card.val)))).splice(0, 5);
         }
         if (newHand[0].num === 'A' && newHand[1].num === 5) {
           const first = newHand.shift();
@@ -294,25 +294,27 @@ const getAndSetWinner = game => { //console.log(game);
 
   let lowestIndex = 42;
 
-  game.players.forEach(player => {
-    if (player.best_hand.index < lowestIndex) {
+  game.players.forEach(player => { console.log(player);
+    if (player.best_hand.index < lowestIndex) { console.log(player.best_hand.index, lowestIndex);
       lowestIndex = player.best_hand.index;
     }
   }); //console.log(lowestIndex);
 
-  const indexWinner = game.players.filter(player => player.best_hand.index === lowestIndex); //console.log(indexWinner);
-
-  if (indexWinner.length === 1) {
+  const indexWinner = game.players.filter(player => { console.log(player.best_hand.index, lowestIndex);
+    return player.best_hand.index === lowestIndex;
+  }); //console.log(indexWinner);
+  console.log(indexWinner);
+  if (indexWinner.length === 1) { 
     return game.hand_winner = indexWinner;
   } else {
     let highestVal = 0;
-    game.players.forEach(player => {
+    indexWinner.forEach(player => { console.log(player.best_hand.val, highestVal);
       if (player.best_hand.val > highestVal) {
         highestVal = player.best_hand.val;
       }
     }); //console.log(highestVal);
 
-    const valWinner = game.players.filter(player => player.best_hand.val === highestVal); //console.log(valWinner);
+    const valWinner = indexWinner.filter(player => player.best_hand.val === highestVal); console.log(valWinner);
 
     return game.hand_winner = valWinner;
   }

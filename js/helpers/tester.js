@@ -43,12 +43,12 @@ const testHands = {
     new Card(9, 'diamonds')
   ],
   flush: [
-    new Card(2, 'spades'),
+    new Card(2, 'hearts'),
     new Card(4, 'spades'),
     new Card(6, 'spades'),
     new Card(7, 'spades'),
     new Card(9, 'spades'),
-    new Card(10, 'clubs'),
+    new Card(10, 'spades'),
     new Card(9, 'diamonds')
   ],
   straight: [
