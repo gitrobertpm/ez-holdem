@@ -31,14 +31,44 @@ const updateOverlays = (game_mode, winner) => { //console.log(game_mode, winner)
 
   if (game_mode === 'winner') {
     winner_overlay.style.display = 'block';
-    let messageEnd = `${winner[0].best_hand.name.toLowerCase()}!`;
-    let messageMiddle = messageEnd.includes('Kind') || messageEnd.includes('Pair') || messageEnd.includes('High') ? 'won with' : 'won with a';
+    let messageEnd = `${winner[0].best_hand.name.toLowerCase()}`; console.log(messageEnd);
+    let messageMiddle = messageEnd.includes('kind') || messageEnd.includes('pair') || messageEnd.includes('high') ? 'won with' : 'won with a';
+    if (messageEnd === 'royal flush') {
+      messageEnd = `${winner[0].best_hand.cards[0].suit_code} royal flush`;
+    }
+    if (messageEnd === 'straight flush') {
+      messageEnd = `${winner[0].best_hand.cards[0].suit_code} straight flush to the ${winner[0].best_hand.cards[0].num}`;
+    }
+    if (messageEnd === 'flush') {
+      messageEnd = `${winner[0].best_hand.cards[0].suit_code} flush`;
+    }
+    if (messageEnd === 'straight') {
+      messageEnd += ` to the ${winner[0].best_hand.cards[0].num}`;
+    }
+    if(messageEnd === 'full house') {
+      messageEnd += ` - ${winner[0].best_hand.cards[0].num}s full of ${winner[0].best_hand.cards[3].num}s`;
+    }
+    if (messageEnd === 'four of a kind') {
+      messageEnd += ` - ${winner[0].best_hand.cards[0].num}`;
+    }
+    if (messageEnd === 'three of a kind') {
+      messageEnd = `a set of ${winner[0].best_hand.cards[0].num}s`;
+    }
+    if (messageEnd === 'two pair') {
+      messageEnd += ` - ${winner[0].best_hand.cards[0].num}s and ${winner[0].best_hand.cards[2].num}s`;
+    }
+    if (messageEnd === 'one pair') {
+      messageEnd += ` - ${winner[0].best_hand.cards[0].num}s`;
+    }
+    if (messageEnd === 'high card') {
+      messageEnd += ` - ${winner[0].best_hand.cards[0].num}`;
+    }
     
     if (winner.length === 1) {
       if (winner[0].id === 1) {
-        winner_overlay.querySelector('h1').innerHTML = `You ${messageMiddle} ${messageEnd}`;
+        winner_overlay.querySelector('h1').innerHTML = `You ${messageMiddle} ${messageEnd}!`;
       } else {
-        winner_overlay.querySelector('h1').innerHTML = `Player ${winner[0].id} ${messageMiddle} ${messageEnd}`;
+        winner_overlay.querySelector('h1').innerHTML = `Player ${winner[0].id} ${messageMiddle} ${messageEnd}!`;
       }
       
     } else {
@@ -54,8 +84,18 @@ const updateOverlays = (game_mode, winner) => { //console.log(game_mode, winner)
         }
       });
 
-      winner_overlay.querySelector('h1').innerHTML = `Players ${winners} ${messageMiddle} ${messageEnd}`;
+      winner_overlay.querySelector('h1').innerHTML = `Players ${winnerList} ${messageMiddle} ${messageEnd}!`;
     }
+
+    [...winner_overlay.querySelector('#best_hand_container').children].forEach((val, indy) => {
+      // if (indy < winner[0].best_hand.cards.length) {
+      //   val.style.display = '';
+        val.innerHTML = `<span class="card-num">${winner[0].best_hand.cards[indy].num}</span> <span class="card-suit">${winner[0].best_hand.cards[indy].suit_code}</span>`;
+        (winner[0].best_hand.cards[indy].color === 'black') ? val.style.color = 'black' : val.style.color = 'red'; 
+      // } else {
+      //   val.style.display = 'none';
+      // }
+    });
     
     return winner_overlay.style.opacity = '1';
   }

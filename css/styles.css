@@ -1018,6 +1018,20 @@ p {
   }
 }
 
+@media (min-width: 768px) {
+  .winner_overlay .card {
+    width: 75px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .winner_overlay .card .card-num,
+.winner_overlay .card .card-suit {
+    font-size: 2em;
+  }
+}
+
 .overlay .start_button {
   margin: 60px auto;
 }
