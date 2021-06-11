@@ -60,6 +60,15 @@ const testHands = {
     new Card(10, 'clubs'),
     new Card(9, 'diamonds')
   ],
+  straight2: [
+    new Card(3, 'spades'),
+    new Card(5, 'spades'),
+    new Card(2, 'spades'),
+    new Card(4, 'spades'),
+    new Card(6, 'hearts'),
+    new Card(7, 'clubs'),
+    new Card(7, 'diamonds')
+  ],
   set: [
     new Card(5, 'spades'),
     new Card(7, 'spades'),
@@ -107,4 +116,5 @@ const rigGame = (game, hand) => { console.log(hand);
   game.players[0].hole_cards = hand.slice(5);
   updateHoleCardsView(game.players)
   game.players[0].hand = hand;
+  game.table.hand_phase = 'river';
 };

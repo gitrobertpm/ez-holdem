@@ -39,8 +39,8 @@ const straightCheck = hand => {
       const first = uniques.shift();
       uniques.push(first);
     }
-    const handStr = uniques.join(''); //console.log(handStr);
-    for (let i = 0, j = possibleStraights.length; i < j; i++) { //console.log(possibleStraights[i].join(''));
+    const handStr = uniques.join(''); console.log(handStr);
+    for (let i = 0, j = possibleStraights.length; i < j; i++) { console.log(possibleStraights[i].join(''));
       if (handStr.includes(possibleStraights[i].reverse().join('')) || handStr.includes(possibleStraights[i].join(''))) { 
         isStraight = true;
         handName = 'Straight';
@@ -48,7 +48,7 @@ const straightCheck = hand => {
           newHand = hand;
         } else {
           newHand = Array.from(new Set(hand.filter(card => possibleStraights[i].includes(card.val)))).splice(0, 5);
-        }
+        } console.log(newHand);
         if (newHand[0].num === 'A' && newHand[1].num === 5) {
           const first = newHand.shift();
           newHand.push(first);
@@ -307,14 +307,44 @@ const getAndSetWinner = game => { //console.log(game);
   if (indexWinner.length === 1) { 
     return game.hand_winner = indexWinner;
   } else {
-    let highestVal = 0;
-    indexWinner.forEach(player => { console.log(player.best_hand.val, highestVal);
-      if (player.best_hand.val > highestVal) {
-        highestVal = player.best_hand.val;
+    let highestHandVal = 0;
+    indexWinner.forEach(player => { console.log(player.best_hand.val, highestHandVal);
+      if (player.best_hand.val > highestHandVal) {
+        return highestHandVal = player.best_hand.val;
       }
     }); //console.log(highestVal);
 
-    const valWinner = indexWinner.filter(player => player.best_hand.val === highestVal); console.log(valWinner);
+    let valWinner;
+    let winningCardHighestVal = 0;
+
+    // If first indexWinner .best_hand.name is 'One Pair' or 'Three of a Kind'
+    if (indexWinner[0].best_hand.name === 'One Pair' ||indexWinner[0].best_hand.name === 'Three of a Kind') {
+      indexWinner.forEach(player => { console.log(player.best_hand.cards[0].val, winningCardHighestVal);
+        if (player.best_hand.cards[0].val > winningCardHighestVal) {
+          return winningCardHighestVal = player.best_hand.cards[0].val;
+        }
+      });
+
+      valWinner = indexWinner.filter(player => player.best_hand.cards[0].val === winningCardHighestVal);
+    }
+
+    // If first indexWinner .best_hand.name is 'Two Pair'
+     else if (indexWinner[0].best_hand.name === 'Two Pair') {
+      indexWinner.forEach(player => { console.log(player.best_hand.cards[0].val, player.best_hand.cards[2].val, winningCardHighestVal);
+        if (player.best_hand.cards[0].val + player.best_hand.cards[2].val > winningCardHighestVal) {
+          return winningCardHighestVal = player.best_hand.cards[0].val + player.best_hand.cards[2].val;
+        }
+      });
+
+      valWinner = indexWinner.filter(player => player.best_hand.cards[0].val + player.best_hand.cards[2].val === winningCardHighestVal);
+    }
+
+    else {
+      // Else valWinner is player with highest value
+      valWinner = indexWinner.filter(player => player.best_hand.val === highestHandVal);
+    }
+    
+    console.log(valWinner);
 
     return game.hand_winner = valWinner;
   }
